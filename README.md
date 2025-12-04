@@ -1,224 +1,175 @@
 🍽️ Restaurant Management System
+A modern, full-featured restaurant ordering & management platform
 
-A complete restaurant ordering and management web application built using PHP, MySQL, HTML, CSS, and JavaScript, designed to run smoothly on XAMPP (Apache + MySQL).
-It includes both customer-facing and admin-facing interfaces for browsing menu items, placing orders, and managing restaurant operations.
+PHP • MySQL • HTML • CSS • JavaScript
 
-📌 Overview
+<p align="center"> <img src="https://img.shields.io/badge/PHP-8+-777BB4?style=for-the-badge&logo=php&logoColor=white"/> <img src="https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-Frontend-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/> <img src="https://img.shields.io/badge/XAMPP-Localhost-FB7A24?style=for-the-badge&logo=xampp&logoColor=white"/> </p>
+✨ About the Project
 
-Tech Stack: PHP 8+, MySQL/MariaDB, HTML5, CSS3, JavaScript
+A complete restaurant management ecosystem featuring customer ordering, cart system, reservations, and a fully-powered admin dashboard.
+Runs locally using XAMPP and uses bcrypt-secured authentication.
 
-Local Server: XAMPP
-
-Database: restaurant_db
-
-UI: Responsive layout (mobile, tablet, desktop)
-
-Features: User accounts, ordering system, reservations, admin CRUD
-
-⭐ Features
-🧑‍🍽️ Customer Side
+🚀 Features at a Glance
+👨‍🍳 Customer Portal
 
 Browse categorized menu with images
 
-Add items to cart (cart saved via localStorage + session backup)
+Add items to cart with localStorage persistence
 
-Checkout with delivery details and automated tax calculation (10%)
+Checkout with delivery details
 
-Order confirmation screen with complete order summary
+Automatic tax calculation (10%)
 
-User registration and login (bcrypt password hashing)
+Order confirmation page
 
-View order history in profile
+Profile + order history
 
 Table reservation system
 
-Toast notification system for better UX
+Beautiful toast notifications
 
-🔐 Admin Side
+🛠️ Admin Dashboard
 
-Secure admin login (role-based access)
+Secure admin login
 
 Manage:
 
 Menu items
 
-Orders
-
 Users
 
-Dashboard insights
+Orders
 
-Edit/delete items and update statuses
+Update prices, stock, images
 
-Fully responsive admin UI
+View order statuses
 
-📁 Important Files & Structure
-File	Purpose
-connect.php	MySQL database connection file
-index.php	Home page
-menu.php	Menu with category filter & Add to Cart
-cart.php	Cart UI + session sync
-checkout.php	Delivery form & order insertion
-order_confirmation.php	Displays order details
-login.php, register.php	User authentication
-admin_login.php	Admin authentication
-dashboard.php	Admin dashboard
-manage_menu.php	CRUD for menu items
-manage_user.php	Manage user accounts
-manage_order.php	Manage orders
-reservations.php	Table booking
-script.js	Frontend JS (cart, toast, UI logic)
-style.css	Main stylesheet (1100+ lines)
-sample_menu_items.sql	Preloaded sample menu items
-SYSTEM_DOCUMENTATION.html	Full system documentation
-🔒 User & Admin Authentication
+Fully responsive admin interface
 
-Users stored in users table
+🗂️ Project Structure
+WDF_PR15-main/
+│── index.php
+│── menu.php
+│── cart.php
+│── checkout.php
+│── order_confirmation.php
+│── connect.php
+│── style.css
+│── script.js
+│── admin/
+│    ├── admin_login.php
+│    ├── dashboard.php
+│    ├── manage_menu.php
+│    ├── manage_user.php
+│    └── manage_order.php
+│── reservations.php
+│── sample_menu_items.sql
+│── SYSTEM_DOCUMENTATION.html
+└── create_admin.php (delete after setup)
 
-Passwords hashed using bcrypt (password_hash())
+🔐 Authentication & Security
 
-Login validation uses password_verify()
+✔ Passwords hashed using bcrypt
+✔ Login verified using password_verify()
+✔ Roles: customer & admin
+✔ All DB queries use prepared statements
+✔ create_admin.php must be deleted after setup
 
-Roles: customer, admin
+🔧 Installation (XAMPP)
+1️⃣ Start XAMPP → Enable Apache + MySQL
+2️⃣ Place folder inside:
+htdocs/
 
-🛠️ Creating an Admin Account
-Method 1: Simple (Browser-based)
+3️⃣ Create database:
+restaurant_db
 
-Use the helper file: create_admin.php
+4️⃣ Import sample items:
 
-Steps:
+sample_menu_items.sql
+OR
 
-Start XAMPP (Apache + MySQL)
+Run load_sample_menu.php
+
+5️⃣ Configure database in connect.php:
+$servername = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'restaurant_db';
+
+6️⃣ Visit the project:
+http://localhost/WDF_PR15-main/
+
+👑 Creating an Admin Account
+✅ Easy Method (Browser)
 
 Visit:
 
 http://localhost/WDF_PR15-main/create_admin.php
 
 
-Fill the form → submit
+Fill details → Submit →
+❗ Delete the file after use.
 
-Important: Delete create_admin.php afterward for security.
+🧠 Manual Method (SQL)
 
-Method 2: Manual (SQL + PHP Hash)
+Generate bcrypt hash:
 
-Generate hash:
-
-php -r "echo password_hash('StrongPassword123', PASSWORD_BCRYPT).PHP_EOL;"
+php -r "echo password_hash('StrongPassword123', PASSWORD_BCRYPT);"
 
 
-Insert into database:
+Insert into DB:
 
 INSERT INTO users (username, email, password, full_name, role, created_at)
 VALUES ('admin', 'admin@example.com', '<HASH>', 'Administrator', 'admin', NOW());
 
-🧩 Installation Guide (XAMPP)
+🧪 Testing the App
+Customer
 
-Install and start XAMPP → enable Apache and MySQL
+✔ Register/Login
+✔ Browse menu
+✔ Add to Cart
+✔ Checkout
+✔ Confirm order
 
-Place the project folder into:
+Admin
 
-htdocs/
+✔ Login using admin_login.php
+✔ Manage menu, users, & orders
 
-
-Create database:
-
-restaurant_db
-
-
-Import:
-
-sample_menu_items.sql
-or
-
-run load_sample_menu.php
-
-Update credentials in connect.php if required:
-
-$servername = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'restaurant_db';
-
-
-Visit the site:
-
-http://localhost/WDF_PR15-main/
-
-🧪 Testing the Application
-
-Register or log in
-
-Add menu items to cart
-
-Proceed through checkout
-
-View order details
-
-Test admin login via admin_login.php
-
-📝 Documentation as PDF
-
-Convert SYSTEM_DOCUMENTATION.html to PDF:
-
-Browser:
+📄 Convert Documentation to PDF
+Option 1: Browser
 
 Open → Print → Save as PDF
 
-Using wkhtmltopdf:
+Option 2: wkhtmltopdf
 wkhtmltopdf SYSTEM_DOCUMENTATION.html SYSTEM_DOCUMENTATION.pdf
 
 🧯 Troubleshooting
-❌ MySQL connection error
+Issue	Solution
+❌ MySQL connection failed	Start MySQL + check connect.php credentials
+❌ CSS not loading	Ensure correct style.css path
+❌ Session not working	Add session_start() at top
+❌ PHP errors	Enable debugging temporarily
 
-Check XAMPP MySQL service
-
-Verify connect.php credentials
-
-❌ CSS not loading
-
-Ensure style.css exists in project root
-
-Check header.php link path
-
-❌ Session issues
-
-Ensure session_start() is at the top of PHP files
-
-Browser cookies must be enabled
-
-❌ PHP errors
-
-Enable temporary debugging:
+Debugging:
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-🔐 Security Recommendations
+🔐 Security Tips
 
-Keep passwords hashed (bcrypt is already used)
+Always hash passwords (already implemented)
 
-Use prepared statements to prevent SQL injection
+Delete admin creation file
 
-Delete create_admin.php after setup
+Avoid deploying without HTTPS
 
-Use HTTPS if deploying publicly
+Validate & sanitize user inputs
 
-Restrict admin panel access
+🚀 Future Enhancements
 
-🚀 Recommended Future Enhancements
-
-Payment gateway (Stripe, Razorpay, PayPal)
-
-Email/SMS notifications
-
-More detailed order analytics
-
-Role-based access control (RBAC)
-
-Automated tests for login, checkout & menu CRUD
-
-📚 Additional Documentation
-
-SYSTEM_DOCUMENTATION.html (primary technical guide)
-
-Any additional .md or guide files included in project
+✨ Payment Gateway Integration (Stripe / PayPal)
+✨ Email & SMS notifications
+✨ Advanced analytics for orders
+✨ Role-based admin permissions
+✨ API version (REST/JSON)
